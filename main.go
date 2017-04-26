@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	arrayAndSlice()
+	mapExample()
 }
 
 //1 Array,slice
@@ -19,4 +19,9 @@ func arrayAndSlice() {
 	slice4 := make([]int, 2)
 	copy(slice4, slice3)
 	fmt.Println(slice3, slice4)
+}
+
+//2 Map
+func mapExample() {
+
 }
