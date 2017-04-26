@@ -24,4 +24,50 @@ func arrayAndSlice() {
 //2 Map
 func mapExample() {
 
+	mapexample := make(map[string]int)
+	mapexample["key"] = 10
+	mapexample["key1"] = 11
+	fmt.Println(mapexample["key"])
+
+	// delete
+	delete(mapexample, "key")
+	fmt.Println(mapexample)
+
+	elements := map[string]string{
+		"H":  "Hydrogen",
+		"He": "Helium",
+		"Li": "Lithium",
+		"Be": "Beryllium",
+		"B":  "Boron",
+		"C":  "Carbon",
+		"N":  "Nitrogen",
+		"O":  "Oxygen",
+		"F":  "Fluorine",
+		"Ne": "Neon",
+	}
+
+	fmt.Println(elements)
+
+	elements2 := map[string]map[string]string{
+		"H": map[string]string{"name": "Hydrogen", "state": "gas"},
+		"He": map[string]string{
+			"name":  "Helium",
+			"state": "gas",
+		},
+		"Li": map[string]string{"name": "Lithium", "state": "solid"},
+		"Be": map[string]string{
+			"name":  "Beryllium",
+			"state": "solid",
+		},
+	}
+	fmt.Println(elements2)
+
+	if el, ok := elements2["Li"]; ok {
+		fmt.Println(el["name"], el["state"])
+	}
+
+	if el, ok := elements2["kk"]; !ok {
+		fmt.Println("null cmnr", el, ok)
+	}
+
 }
