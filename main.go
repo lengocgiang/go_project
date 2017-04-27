@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
@@ -22,15 +23,10 @@ func main() {
 		}
 		fmt.Println(add(2, 3))
 	*/
+	c := Circle{0, 0, 5}
+	r := Rectange{0, 0, 10, 10}
 
-	var x *int
-	var y int
-	y = 0
-	x = &y
-
-	fmt.Println(x)
-	fmt.Println(&x)
-	fmt.Println(y)
+	fmt.Println(totalArea(&c, &r))
 
 }
 
@@ -180,7 +176,47 @@ func square(x *float64) {
 	*x = *x * *x
 }
 
-func swap(p1, p2 *int) {
-	// temp := new(int)
-	// temp = &p1
+func swap(x, y *int) {
+	var temp int
+	temp = *x
+	*x = *y
+	*y = temp
+	fmt.Println(*x, *y)
+}
+
+// 7. Struct
+type Circle struct {
+	x, y, r float64
+}
+
+type Rectange struct {
+	x1, y1, x2, y2 float64
+}
+
+func (c *Circle) area() float64 {
+	return math.Pi * c.r * c.r
+}
+
+func (r *Rectange) area() float64 {
+	l := distance(r.x1, r.y1, r.x2, r.y1)
+	w := distance(r.x1, r.y1, r.x1, r.y2)
+	return l * w
+}
+
+func distance(x1, y1, x2, y2 float64) float64 {
+	a := x2 - x1
+	b := y2 - y1
+	return math.Sqrt(a*b + b*b)
+}
+
+type Shape interface {
+	area() float64
+}
+
+func totalArea(shapes ...Shape) float64 {
+	total := 0.0
+	for _, shape := range shapes {
+		total += shape.area()
+	}
+	return total
 }
